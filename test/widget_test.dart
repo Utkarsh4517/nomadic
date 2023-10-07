@@ -5,15 +5,22 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nomadic/main.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Client client = Client();
+  client = Client()
+      .setEndpoint("https://cloud.appwrite.io/v1")
+      .setProject("nomadic4517");
+  Account account = Account(client);
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(account: account));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
