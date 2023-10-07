@@ -27,7 +27,7 @@ Follow these steps to set up Nomadic locally:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/nomadic.git
+    git clone https://github.com/Utkarsh4517/nomadic.git
     ```
 
 2. Install dependencies:
