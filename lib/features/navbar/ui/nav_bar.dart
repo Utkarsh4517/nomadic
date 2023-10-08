@@ -2,6 +2,7 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nomadic/constants/colors.dart';
 import 'package:nomadic/constants/dimensions.dart';
 import 'package:nomadic/features/explore/ui/explore_page.dart';
 import 'package:nomadic/features/memories/ui/memories_page.dart';
@@ -23,7 +24,7 @@ class _NavBarState extends State<NavBar> {
     List<BottomNavigationBarItem> bottomNavItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.mountain,
+            FeatherIcons.mapPin,
           ),
           label: 'Explore'),
       const BottomNavigationBarItem(
@@ -55,6 +56,7 @@ class _NavBarState extends State<NavBar> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: lightBlack,
           body: PageView(
             physics: const NeverScrollableScrollPhysics(),
             controller: _pageController,
@@ -64,22 +66,20 @@ class _NavBarState extends State<NavBar> {
             children: bottomNavScreen,
           ),
           bottomNavigationBar: Container(
-            color: const Color.fromARGB(255, 248, 248, 248),
+            color: lightBlack,
             margin: const EdgeInsets.symmetric(horizontal: 20)
                 .copyWith(bottom: getScreenheight(context) * 0.02),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: BottomNavigationBar(
-                backgroundColor: const Color.fromARGB(255, 46, 52, 68),
+                backgroundColor: blackColor,
                 items: bottomNavItems,
                 currentIndex: state.tabIndex,
-                selectedItemColor: Colors.white,
-                // unselectedItemColor: Colors.white,
+                selectedItemColor: pink,
                 elevation: 10,
                 selectedFontSize: 12,
                 unselectedFontSize: 10,
                 type: BottomNavigationBarType.fixed,
-                // selectedItemColor: blackColor,
                 unselectedItemColor: Colors.white.withAlpha(85),
                 onTap: (index) {
                   _pageController.jumpToPage(index);

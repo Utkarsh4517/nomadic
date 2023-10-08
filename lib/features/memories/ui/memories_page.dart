@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nomadic/constants/colors.dart';
 
 
 class MemoriesPage extends StatefulWidget {
@@ -12,6 +13,7 @@ class _MemoriesPageState extends State<MemoriesPage> {
   @override
   Widget build(BuildContext context) {
         return const Scaffold(
+          backgroundColor: lightBlack,
       body: Center(
         child: Text('Memories Page'),
       ),

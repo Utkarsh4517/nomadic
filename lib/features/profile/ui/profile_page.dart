@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nomadic/constants/colors.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,6 +12,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
         return const Scaffold(
+          backgroundColor: lightBlack,
       body: Center(
         child: Text('Profile Page'),
       ),
