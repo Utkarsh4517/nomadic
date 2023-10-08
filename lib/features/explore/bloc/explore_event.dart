@@ -4,3 +4,5 @@ part of 'explore_bloc.dart';
 sealed class ExploreEvent {}
 
 class ExploreInitialEvent extends ExploreEvent {}
+
+class ShareJourneyButtonClicked extends ExploreEvent {}

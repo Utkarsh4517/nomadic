@@ -10,3 +10,5 @@ abstract class ExploreActionState extends ExploreState {}
 class ExplorePageLoadingState extends ExploreState {}
 
 class ExplorePageLoadedSuccessState extends ExploreState {}
+
+class ShareJourneyButtonClickedState extends ExploreActionState {}

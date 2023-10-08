@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nomadic/constants/colors.dart';
 import 'package:nomadic/constants/dimensions.dart';
 import 'package:nomadic/features/explore/bloc/explore_bloc.dart';
+import 'package:nomadic/features/explore/ui/share_your_journey_ui/enter_destination.dart';
 import 'package:nomadic/features/explore/widgets/head_text.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -32,7 +33,14 @@ class _ExplorePageState extends State<ExplorePage>
       bloc: exploreBloc,
       listenWhen: (previous, current) => current is ExploreActionState,
       buildWhen: (previous, current) => current is! ExploreActionState,
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is ShareJourneyButtonClickedState) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const EnterDestinationPage()));
+        }
+      },
       builder: (context, state) {
         switch (state.runtimeType) {
           case ExplorePageLoadingState:
@@ -51,7 +59,9 @@ class _ExplorePageState extends State<ExplorePage>
                   width: getScreenWidth(context) * 0.4,
                   child: FloatingActionButton(
                     backgroundColor: blackColor,
-                    onPressed: () {},
+                    onPressed: () {
+                      exploreBloc.add(ShareJourneyButtonClicked());
+                    },
                     child: const Text(
                       'Share your journey!',
                       style: TextStyle(
