@@ -1,15 +1,8 @@
-import 'dart:math';
-
-import 'package:appwrite/appwrite.dart';
-import 'package:feather_icons/feather_icons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/models.dart' as models;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nomadic/constants/colors.dart';
 import 'package:nomadic/constants/dimensions.dart';
-import 'package:nomadic/features/auth/repo/auth_repo.dart';
 import 'package:nomadic/features/auth/ui/login_screen.dart';
 import 'package:nomadic/features/auth/ui/register_screen.dart';
 import 'package:nomadic/features/auth/widgets/continue_with_auth_provide_button.dart';

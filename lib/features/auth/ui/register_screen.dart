@@ -7,6 +7,7 @@ import 'package:nomadic/features/auth/repo/auth_repo.dart';
 import 'package:nomadic/features/auth/widgets/auth_text_field.dart';
 import 'package:nomadic/features/auth/widgets/full_size_button.dart';
 import 'package:nomadic/features/auth/widgets/login_page_bold_text.dart';
+import 'package:nomadic/features/navbar/ui/nav_bar.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -45,6 +46,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       Navigator.pop(context);
       const snackbar = SnackBar(content: Text('Account created!'));
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const NavBar(),
+        ),
+      );
     } on AppwriteException catch (e) {
       Navigator.pop(context);
       showAlert(title: 'Account creation failed', text: e.message.toString());
