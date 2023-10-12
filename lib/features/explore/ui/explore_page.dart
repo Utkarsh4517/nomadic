@@ -35,10 +35,8 @@ class _ExplorePageState extends State<ExplorePage>
       buildWhen: (previous, current) => current is! ExploreActionState,
       listener: (context, state) {
         if (state is ShareJourneyButtonClickedState) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const EnterDestinationPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const EnterDestinationPage()));
         }
       },
       builder: (context, state) {
@@ -83,6 +81,7 @@ class _ExplorePageState extends State<ExplorePage>
                           text: 'Popular destinations!',
                           color: whiteColor,
                           sizeFactor: 0.03),
+                      
 
                       // Popular Destinations
                     ],
