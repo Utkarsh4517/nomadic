@@ -10,6 +10,7 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
   ExploreBloc() : super(ExploreInitial()) {
     on<ExploreInitialEvent>(exploreInitialEvent);
     on<ShareJourneyButtonClicked>(shareJourneyButtonClicked);
+    on<TitlePageNextButtonClickedEvent>(titlePageNextButtonClickedEvent);
   }
 
   FutureOr<void> exploreInitialEvent(
@@ -19,6 +20,11 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
 
   FutureOr<void> shareJourneyButtonClicked(
       ShareJourneyButtonClicked event, Emitter<ExploreState> emit) {
-        emit(ShareJourneyButtonClickedState());
+    emit(ShareJourneyButtonClickedState());
+  }
+
+  FutureOr<void> titlePageNextButtonClickedEvent(
+      TitlePageNextButtonClickedEvent event, Emitter<ExploreState> emit) {
+        
       }
 }

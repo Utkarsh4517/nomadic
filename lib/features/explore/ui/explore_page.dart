@@ -4,6 +4,7 @@ import 'package:nomadic/constants/colors.dart';
 import 'package:nomadic/constants/dimensions.dart';
 import 'package:nomadic/features/explore/bloc/explore_bloc.dart';
 import 'package:nomadic/features/explore/ui/share_your_journey_ui/page_view.dart';
+import 'package:nomadic/features/explore/ui/share_your_journey_ui/title_page_sl1.dart';
 import 'package:nomadic/features/explore/widgets/head_text.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _ExplorePageState extends State<ExplorePage>
       listener: (context, state) {
         if (state is ShareJourneyButtonClickedState) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const CreateJourneyPageView()));
+              MaterialPageRoute(builder: (context) => const TitlePage()));
         }
       },
       builder: (context, state) {

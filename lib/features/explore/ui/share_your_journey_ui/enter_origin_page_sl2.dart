@@ -1,15 +1,25 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
 import 'package:nomadic/constants/colors.dart';
 import 'package:nomadic/constants/dimensions.dart';
 import 'package:nomadic/constants/google_api.dart';
+import 'package:nomadic/features/explore/ui/share_your_journey_ui/enter_destination.dart';
+import 'package:nomadic/features/explore/ui/share_your_journey_ui/enter_destination_page_sl3.dart';
 import 'package:nomadic/features/explore/widgets/head_text.dart';
+import 'package:nomadic/features/explore/widgets/large_button.dart';
 
 class EnterOriginPage extends StatefulWidget {
-  const EnterOriginPage({super.key});
+  final String title;
+  final String description;
+  const EnterOriginPage({
+    required this.title,
+    required this.description,
+    super.key,
+  });
 
   @override
   State<EnterOriginPage> createState() => _EnterOriginPageState();
@@ -17,6 +27,8 @@ class EnterOriginPage extends StatefulWidget {
 
 class _EnterOriginPageState extends State<EnterOriginPage> {
   final _originController = TextEditingController();
+  double originLat = 0;
+  double originLng = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +65,10 @@ class _EnterOriginPageState extends State<EnterOriginPage> {
                 isLatLngRequired: true,
                 getPlaceDetailWithLatLng: (Prediction prediction) {
                   print("placeDetails${prediction.lng} ${prediction.lat}");
+                  setState(() {
+                    originLng = double.parse(prediction.lng!);
+                    originLat = double.parse(prediction.lat!);
+                  });
                 },
                 itemClick: (Prediction prediction) {
                   _originController.text = prediction.description!;
@@ -77,7 +93,24 @@ class _EnterOriginPageState extends State<EnterOriginPage> {
                 },
                 seperatedBuilder: const Divider(),
                 isCrossBtnShown: true,
-              )
+              ),
+              LargeButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EnterDestinationScreen(
+                          title: widget.title,
+                          description: widget.description,
+                          origin: LatLng(
+                            originLat,
+                            originLng,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  text: 'Next'),
             ],
           ),
         )));
