@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nomadic/constants/colors.dart';
 import 'package:nomadic/constants/dimensions.dart';
 import 'package:nomadic/features/explore/bloc/explore_bloc.dart';
-import 'package:nomadic/features/explore/ui/share_your_journey_ui/enter_destination.dart';
 import 'package:nomadic/features/explore/ui/share_your_journey_ui/page_view.dart';
 import 'package:nomadic/features/explore/widgets/head_text.dart';
 
