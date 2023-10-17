@@ -96,19 +96,21 @@ class _EnterOriginPageState extends State<EnterOriginPage> {
               ),
               LargeButton(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EnterDestinationScreen(
-                          title: widget.title,
-                          description: widget.description,
-                          origin: LatLng(
-                            originLat,
-                            originLng,
+                    if (originLat != 0 && originLng != 0) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EnterDestinationScreen(
+                            title: widget.title,
+                            description: widget.description,
+                            origin: LatLng(
+                              originLat,
+                              originLng,
+                            ),
                           ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   },
                   text: 'Next'),
             ],

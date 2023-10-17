@@ -56,15 +56,18 @@ class _TitlePageState extends State<TitlePage> {
                   ),
                   LargeButton(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EnterOriginPage(
-                            title: _titleController.text,
-                            description: _descriptionController.text,
+                      if (_titleController.text.isNotEmpty &&
+                          _descriptionController.text.isNotEmpty) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EnterOriginPage(
+                              title: _titleController.text,
+                              description: _descriptionController.text,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                     text: 'Next',
                   )

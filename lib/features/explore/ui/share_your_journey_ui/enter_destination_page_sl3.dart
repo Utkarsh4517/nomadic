@@ -5,7 +5,9 @@ import 'package:google_places_flutter/model/prediction.dart';
 import 'package:nomadic/constants/colors.dart';
 import 'package:nomadic/constants/dimensions.dart';
 import 'package:nomadic/constants/google_api.dart';
+import 'package:nomadic/features/explore/ui/share_your_journey_ui/add_points_to_map_page_sl4.dart';
 import 'package:nomadic/features/explore/widgets/head_text.dart';
+import 'package:nomadic/features/explore/widgets/large_button.dart';
 
 class EnterDestinationScreen extends StatefulWidget {
   final String title;
@@ -24,6 +26,9 @@ class EnterDestinationScreen extends StatefulWidget {
 
 class _EnterDestinationScreenState extends State<EnterDestinationScreen> {
   final _destinationController = TextEditingController();
+  double destinationLat = 0;
+  double destinationLng = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +44,7 @@ class _EnterDestinationScreenState extends State<EnterDestinationScreen> {
                 sizeFactor: 0.06,
                 text: 'Enter your destination',
               ),
-
+            
               // Text field to search origin using google places..
               GooglePlaceAutoCompleteTextField(
                 boxDecoration: const BoxDecoration(),
@@ -60,6 +65,10 @@ class _EnterDestinationScreenState extends State<EnterDestinationScreen> {
                 isLatLngRequired: true,
                 getPlaceDetailWithLatLng: (Prediction prediction) {
                   print("placeDetails${prediction.lng} ${prediction.lat}");
+                  setState(() {
+                    destinationLat = double.parse(prediction.lat!);
+                    destinationLng = double.parse(prediction.lng!);
+                  });
                 },
                 itemClick: (Prediction prediction) {
                   _destinationController.text = prediction.description!;
@@ -84,7 +93,27 @@ class _EnterDestinationScreenState extends State<EnterDestinationScreen> {
                 },
                 seperatedBuilder: const Divider(),
                 isCrossBtnShown: true,
-              )
+              ),
+              LargeButton(
+                  onTap: () {
+                    if (destinationLat != 0 && destinationLng != 0) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddPointsToMapPage(
+                            title: widget.title,
+                            description: widget.description,
+                            origin: widget.origin,
+                            destination: LatLng(
+                              destinationLat,
+                              destinationLng,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  text: 'Next')
             ],
           ),
         )));
